@@ -19,11 +19,8 @@
                         |==============================================|
 -----------------------------------------------------------------------------"""
 
-
-
  # Modulos importados.
-import os
-import random
+import os, random
 
 class TriquiPython:
   """ Juego Triqui (Tres en Línea, Tres en Raya, Gato) en consola. """
@@ -36,7 +33,6 @@ class TriquiPython:
     self.autor = 'Emanuel GP'
     self.estatus = 'En Desarrollo'
     self.licencia = 'GPLv3'
-
      # Variables/Constantes dinamicas del programa.
     self.simbolos = ('X', 'O')
     self.turno = 0
@@ -70,8 +66,7 @@ class TriquiPython:
                           self.casillas[6], self.casillas[7], self.casillas[8])
 
   def selecciona_jugador_inicial(self):
-    """ Método que selecciona 'aleatoriamente' el jugador que iniciará la
-        partida actual. """
+    """ Método que selecciona 'aleatoriamente' el jugador que iniciará la partida actual. """
     aleatorio = random.randint(1,100)
     if aleatorio%2 == 0:
       self.actualiza_valores(0)
@@ -79,8 +74,7 @@ class TriquiPython:
       self.actualiza_valores(1)
 
   def actualiza_valores(self, valor1=None, valor2=None):
-    """ Método que actualiza los valores de las variables que controlan
-        el flujo del juego. """
+    """ Método que actualiza los valores de las variables que controlan el flujo del juego. """
     if type(valor1) == int:
       self.turno = valor1
     elif type(valor1) == str:
@@ -144,8 +138,8 @@ class TriquiPython:
       return False
 
   def comprueba_jugada(self, casilla, casillas):
-    """ Método que verifica si el jugador en turno eligio una casilla 
-        valida del tablero para marcar. """
+    """ Método que verifica si el jugador en turno eligio una casilla valida del tablero para 
+        marcar. """
     for item in casillas:
       if casilla == item:
         return True
@@ -154,65 +148,70 @@ class TriquiPython:
   def main(self):
     """ Método principal del programa que controla el flujo del juego. """
     while True:
-        os.system('clear')
-        print "\t\tTres en Línea\n"
-        print "[1] Iniciar partida"
-        print "[2] Información del programa"
-        print "[3] Salir"
-        opcion = raw_input("Ingresa una opción para continuar: ")
+      os.system('clear')
+      print "\t\t>> TRES EN LÍNEA <<\n"
+      print "[1] Iniciar partida"
+      print "[2] Información del programa"
+      print "[3] Salir"
+      opcion = raw_input("Ingresa una opción para continuar: ")
 
-        if opcion == "1":
-          jugada = "primera"
-          while True:
-            os.system('clear')
-            self.dibuja_tablero()
-            if jugada == "primera":
-              self.selecciona_jugador_inicial()
-            print "Turno del jugador [%s]." % (self.simbolos[self.turno])
-            jugada = raw_input("Digita la letra de la casilla a marcar"+
-                                "(escribe <S> para salir de la partida): ")
-            jugada = jugada.upper()
-            if self.turno == 0 and (jugada == "X" or jugada == "O"):
-              jugada = "Z"
-            elif self.turno == 1 and (jugada == "X" or jugada == "O"):
-              jugada = "Z"
-            if jugada == "S":
+      if opcion == "1":
+        jugada = "primera"
+        while True:
+          os.system('clear')
+          self.dibuja_tablero()
+
+          if jugada == "primera":
+            self.selecciona_jugador_inicial()
+          print "Turno del jugador [%s]." % (self.simbolos[self.turno])
+          jugada = raw_input("Digita la letra de la casilla a marcar"+
+                              "(escribe <S> para salir de la partida): ")
+          jugada = jugada.upper()
+
+          if self.turno == 0 and (jugada == "X" or jugada == "O"):
+            jugada = "Z"
+          elif self.turno == 1 and (jugada == "X" or jugada == "O"):
+            jugada = "Z"
+
+          if jugada == "S":
+            self.casillas = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
+            break
+          else:
+            valor_jugada = self.comprueba_jugada(jugada, self.casillas)
+
+            if valor_jugada:
+              self.actualiza_valores(self.simbolos[self.turno], jugada)
+
+            estado_actual = self.verifica_estado_actual_tablero(self.simbolos[self.turno], jugada)
+
+            if type(estado_actual) == tuple:
+              os.system('clear')
+              self.dibuja_tablero()
+              print "\n >> JUEGO TERMINADO  <<"
+              print " %s: %s\n" % (estado_actual[1], estado_actual[0])
+              continuar = raw_input("\nPresione <Enter> para continuar...")
               self.casillas = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
-              break
-            else:
-              valor_jugada = self.comprueba_jugada(jugada, self.casillas)
-              if valor_jugada:
-                self.actualiza_valores(self.simbolos[self.turno], jugada)
-              estado_actual = self.verifica_estado_actual_tablero(self.simbolos[self.turno], jugada)
-              if type(estado_actual) == tuple:
-                os.system('clear')
-                self.dibuja_tablero()
-                print "\n >> JUEGO TERMINADO  <<"
-                print " %s: %s\n" % (estado_actual[1], estado_actual[0])
-                continuar = raw_input("\nPresione <Enter> para continuar...")
-                break 
-              elif estado_actual:
-                continue
-              else:
-                os.system('clear')
-                self.dibuja_tablero()
-                print "\n >> JUEGO TERMINADO  <<"
-                print "\t EMPATE..."
-                continuar = raw_input("\nPresione <Enter> para continuar...")
-                break 
+              break 
+            elif estado_actual:
               if self.turno == 0:
                 self.turno = 1
               else:
                 self.turno = 0
-        elif opcion == "2":
-          os.system('clear')
-          self.datos()
-          continuar = raw_input("\nPresione <Enter> para continuar...")
-        elif opcion == "3":
-          os.system('clear')
-          break
-
-
+            else:
+              os.system('clear')
+              self.dibuja_tablero()
+              print "\n >> JUEGO TERMINADO  <<"
+              print "\t EMPATE..."
+              continuar = raw_input("\nPresione <Enter> para continuar...")
+              self.casillas = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
+              break 
+      elif opcion == "2":
+        os.system('clear')
+        self.datos()
+        continuar = raw_input("\nPresione <Enter> para continuar...")
+      elif opcion == "3":
+        os.system('clear')
+        break
 
 if __name__ == '__main__':
   triqui = TriquiPython()
