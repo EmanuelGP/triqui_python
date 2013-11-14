@@ -8,8 +8,8 @@
   [L]enguaje Utilizado:         Python 2 (v2.7)
   [A]utor:                      Emanuel García Pérez
   [U]bicacion:                  Cuernavaca, Morelos, Mexico
-  [V]ersion:                    0.3
-  [E]status:                    En Desarrollo
+  [V]ersion:                    1.0
+  [E]status:                    Estable
   [L]icencia:                   Licencia Publica General version 3 (GPLv3)
 
            Descripcion: |==============================================|
@@ -26,12 +26,13 @@ class TriquiPython:
   """ Juego Triqui (Tres en Línea, Tres en Raya, Gato) en consola. """
 
   def __init__(self):
+    """ Método que inicializa las variables de clase del programa. """
      # Constantes estaticas del programa.
     self.nombre = 'Tres en Línea'
-    self.version = '0.3'
+    self.version = '1.0'
     self.condificacion = 'UTF-8'
     self.autor = 'Emanuel GP'
-    self.estatus = 'En Desarrollo'
+    self.estatus = 'Estable'
     self.licencia = 'GPLv3'
      # Variables/Constantes dinamicas del programa.
     self.simbolos = ('X', 'O')
@@ -80,6 +81,8 @@ class TriquiPython:
     elif type(valor1) == str:
       indice = self.casillas.index(valor2)
       self.casillas[indice] = valor1
+    elif type(valor1) == list:
+      self.casillas = valor1
 
   def verifica_estado_actual_tablero(self, jugador, casilla):
     """ Método que verifica el estado actual del tablero para cotejar si hay algún ganador, un 
@@ -154,43 +157,36 @@ class TriquiPython:
       print "[2] Información del programa"
       print "[3] Salir"
       opcion = raw_input("Ingresa una opción para continuar: ")
-
       if opcion == "1":
         jugada = "primera"
         while True:
           os.system('clear')
           self.dibuja_tablero()
-
           if jugada == "primera":
             self.selecciona_jugador_inicial()
           print "Turno del jugador [%s]." % (self.simbolos[self.turno])
-          jugada = raw_input("Digita la letra de la casilla a marcar"+
-                              "(escribe <S> para salir de la partida): ")
+          jugada = raw_input("Digita la letra de la casilla a marcar" + 
+                             "(escribe <S> para salir de la partida): ")
           jugada = jugada.upper()
-
           if self.turno == 0 and (jugada == "X" or jugada == "O"):
             jugada = "Z"
           elif self.turno == 1 and (jugada == "X" or jugada == "O"):
             jugada = "Z"
-
           if jugada == "S":
-            self.casillas = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
+            self.actualiza_valores(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'])
             break
           else:
             valor_jugada = self.comprueba_jugada(jugada, self.casillas)
-
             if valor_jugada:
               self.actualiza_valores(self.simbolos[self.turno], jugada)
-
             estado_actual = self.verifica_estado_actual_tablero(self.simbolos[self.turno], jugada)
-
             if type(estado_actual) == tuple:
               os.system('clear')
               self.dibuja_tablero()
               print "\n >> JUEGO TERMINADO  <<"
               print " %s: %s\n" % (estado_actual[1], estado_actual[0])
               continuar = raw_input("\nPresione <Enter> para continuar...")
-              self.casillas = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
+              self.actualiza_valores(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'])
               break 
             elif estado_actual:
               if self.turno == 0:
@@ -203,7 +199,7 @@ class TriquiPython:
               print "\n >> JUEGO TERMINADO  <<"
               print "\t EMPATE..."
               continuar = raw_input("\nPresione <Enter> para continuar...")
-              self.casillas = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
+              self.actualiza_valores(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'])
               break 
       elif opcion == "2":
         os.system('clear')
@@ -217,11 +213,3 @@ if __name__ == '__main__':
   triqui = TriquiPython()
   triqui.main()
   exit(0)
-
-
-
-
-
-
-
-
