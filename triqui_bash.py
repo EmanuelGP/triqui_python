@@ -92,46 +92,46 @@ class TriquiPython:
         empate o si hay casillas libres aún en el tablero para continuar la partida. """
     estado = ""
     if casilla == 'A':
-      if (self.casillas[0]==jugador and self.casillas[1]==jugador and self.casillas[2]==jugador) or \
-         (self.casillas[0]==jugador and self.casillas[3]==jugador and self.casillas[6]==jugador) or \
-         (self.casillas[0]==jugador and self.casillas[4]==jugador and self.casillas[8]==jugador):
-         estado = "GANADOR"
+      if(self.casillas[0]==jugador and self.casillas[1]==jugador and self.casillas[2]==jugador) or \
+        (self.casillas[0]==jugador and self.casillas[3]==jugador and self.casillas[6]==jugador) or \
+        (self.casillas[0]==jugador and self.casillas[4]==jugador and self.casillas[8]==jugador):
+        estado = "GANADOR"
     elif casilla == 'B':
-      if (self.casillas[0]==jugador and self.casillas[1]==jugador and self.casillas[2]==jugador) or \
-         (self.casillas[1]==jugador and self.casillas[4]==jugador and self.casillas[7]==jugador):
-         estado = "GANADOR"
+      if(self.casillas[0]==jugador and self.casillas[1]==jugador and self.casillas[2]==jugador) or \
+        (self.casillas[1]==jugador and self.casillas[4]==jugador and self.casillas[7]==jugador):
+        estado = "GANADOR"
     elif casilla == 'C':
-      if (self.casillas[0]==jugador and self.casillas[1]==jugador and self.casillas[2]==jugador) or \
-         (self.casillas[2]==jugador and self.casillas[4]==jugador and self.casillas[6]==jugador) or \
-         (self.casillas[2]==jugador and self.casillas[5]==jugador and self.casillas[8]==jugador):
-         estado = "GANADOR"
+      if(self.casillas[0]==jugador and self.casillas[1]==jugador and self.casillas[2]==jugador) or \
+        (self.casillas[2]==jugador and self.casillas[4]==jugador and self.casillas[6]==jugador) or \
+        (self.casillas[2]==jugador and self.casillas[5]==jugador and self.casillas[8]==jugador):
+        estado = "GANADOR"
     elif casilla == 'D':
-      if (self.casillas[0]==jugador and self.casillas[3]==jugador and self.casillas[6]==jugador) or \
-         (self.casillas[3]==jugador and self.casillas[4]==jugador and self.casillas[5]==jugador):
+      if(self.casillas[0]==jugador and self.casillas[3]==jugador and self.casillas[6]==jugador) or \
+        (self.casillas[3]==jugador and self.casillas[4]==jugador and self.casillas[5]==jugador):
         estado = "GANADOR"
     elif casilla == 'E':
-      if (self.casillas[0]==jugador and self.casillas[4]==jugador and self.casillas[8]==jugador) or \
-         (self.casillas[1]==jugador and self.casillas[4]==jugador and self.casillas[7]==jugador) or \
-         (self.casillas[2]==jugador and self.casillas[4]==jugador and self.casillas[6]==jugador) or \
-         (self.casillas[3]==jugador and self.casillas[4]==jugador and self.casillas[5]==jugador):
+      if(self.casillas[0]==jugador and self.casillas[4]==jugador and self.casillas[8]==jugador) or \
+        (self.casillas[1]==jugador and self.casillas[4]==jugador and self.casillas[7]==jugador) or \
+        (self.casillas[2]==jugador and self.casillas[4]==jugador and self.casillas[6]==jugador) or \
+        (self.casillas[3]==jugador and self.casillas[4]==jugador and self.casillas[5]==jugador):
         estado = "GANADOR"
     elif casilla == 'F':
-      if (self.casillas[2]==jugador and self.casillas[5]==jugador and self.casillas[8]==jugador) or \
-         (self.casillas[3]==jugador and self.casillas[4]==jugador and self.casillas[5]==jugador):
+      if(self.casillas[2]==jugador and self.casillas[5]==jugador and self.casillas[8]==jugador) or \
+        (self.casillas[3]==jugador and self.casillas[4]==jugador and self.casillas[5]==jugador):
         estado = "GANADOR"
     elif casilla == 'G':
-      if (self.casillas[0]==jugador and self.casillas[3]==jugador and self.casillas[6]==jugador) or \
-         (self.casillas[2]==jugador and self.casillas[4]==jugador and self.casillas[6]==jugador) or \
-         (self.casillas[6]==jugador and self.casillas[7]==jugador and self.casillas[8]==jugador):
+      if(self.casillas[0]==jugador and self.casillas[3]==jugador and self.casillas[6]==jugador) or \
+        (self.casillas[2]==jugador and self.casillas[4]==jugador and self.casillas[6]==jugador) or \
+        (self.casillas[6]==jugador and self.casillas[7]==jugador and self.casillas[8]==jugador):
         estado = "GANADOR"
     elif casilla == 'H':
-      if (self.casillas[1]==jugador and self.casillas[4]==jugador and self.casillas[7]==jugador) or \
-         (self.casillas[6]==jugador and self.casillas[7]==jugador and self.casillas[8]==jugador):
+      if(self.casillas[1]==jugador and self.casillas[4]==jugador and self.casillas[7]==jugador) or \
+        (self.casillas[6]==jugador and self.casillas[7]==jugador and self.casillas[8]==jugador):
         estado = "GANADOR"
     elif casilla == 'I':
-      if (self.casillas[0]==jugador and self.casillas[4]==jugador and self.casillas[8]==jugador) or \
-         (self.casillas[2]==jugador and self.casillas[5]==jugador and self.casillas[8]==jugador) or \
-         (self.casillas[6]==jugador and self.casillas[7]==jugador and self.casillas[8]==jugador):
+      if(self.casillas[0]==jugador and self.casillas[4]==jugador and self.casillas[8]==jugador) or \
+        (self.casillas[2]==jugador and self.casillas[5]==jugador and self.casillas[8]==jugador) or \
+        (self.casillas[6]==jugador and self.casillas[7]==jugador and self.casillas[8]==jugador):
         estado = "GANADOR"
     if estado != "":
       return (jugador, estado)
@@ -154,7 +154,7 @@ class TriquiPython:
   def main(self):
     """ Método principal del programa que controla el flujo del juego. """
     while True:
-        os.system("clear")
+        os.system('clear')
         print "\t\tTres en Línea\n"
         print "[1] Iniciar partida"
         print "[2] Información del programa"
@@ -164,7 +164,7 @@ class TriquiPython:
         if opcion == "1":
           jugada = "primera"
           while True:
-            os.system("clear")
+            os.system('clear')
             self.dibuja_tablero()
             if jugada == "primera":
               self.selecciona_jugador_inicial()
@@ -183,29 +183,33 @@ class TriquiPython:
               valor_jugada = self.comprueba_jugada(jugada, self.casillas)
               if valor_jugada:
                 self.actualiza_valores(self.simbolos[self.turno], jugada)
-                if self.turno == 0:
-                  self.turno = 1
-                else:
-                  self.turno = 0
               estado_actual = self.verifica_estado_actual_tablero(self.simbolos[self.turno], jugada)
               if type(estado_actual) == tuple:
+                os.system('clear')
+                self.dibuja_tablero()
                 print "\n >> JUEGO TERMINADO  <<"
                 print " %s: %s\n" % (estado_actual[1], estado_actual[0])
                 continuar = raw_input("\nPresione <Enter> para continuar...")
                 break 
               elif estado_actual:
-                print "\n\tPartida en juego..."
+                continue
               else:
+                os.system('clear')
+                self.dibuja_tablero()
                 print "\n >> JUEGO TERMINADO  <<"
                 print "\t EMPATE..."
                 continuar = raw_input("\nPresione <Enter> para continuar...")
                 break 
+              if self.turno == 0:
+                self.turno = 1
+              else:
+                self.turno = 0
         elif opcion == "2":
-          os.system("clear")
+          os.system('clear')
           self.datos()
           continuar = raw_input("\nPresione <Enter> para continuar...")
         elif opcion == "3":
-          os.system("clear")
+          os.system('clear')
           break
 
 
